@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titlePage}}</title>
+    {{#each style}}
+    <link rel="stylesheet" href="/styles/{{this}}">
+    {{/each}}
+</head>
+<body>
+    <h1>{{h1}}</h1>
+    <form id="productForm" method="post" action="/api/realTimeProducts">
+        <input type="text" name="title" placeholder="Título" required>
+        <input type="text" name="description" placeholder="Descripción" required>
+        <input type="number" name="price" placeholder="Precio" required>
+        <input type="text" name="thumbnail" placeholder="URL de la imagen" required>
+        <input type="text" name="code" placeholder="Código" required>
+        <input type="text" name="status" placeholder="Estado (true/false)" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <button type="submit">Agregar Producto</button>
+    </form>
+
+    <div id="productList">
+        {{#each products}}
+        <div class="product-card">
+            <h4>{{title}}</h4>
+            <img src="{{thumbnail}}" alt="Imagen de {{title}}">
+            <div class="info">
+                <p>{{description}}</p>
+                <p>Precio: ${{price}}</p>
+                <p>Stock: {{stock}}</p>
+                <p>Código: {{code}}</p>
+                <p>Categoría: {{category}}</p>
+            </div>
+            <div class="buttons">
+                <button class="btn-cart" onclick="addToCart('{{_id}}')">Agregar al carrito</button>
+                <a href="/products/{{_id}}" class="btn-details">Ver detalles</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    {{#each script}}
+    <script src="/scripts/{{this}}"></script>
+    {{/each}}
+</body>
+</html>
