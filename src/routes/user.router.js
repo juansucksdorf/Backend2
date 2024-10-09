@@ -21,14 +21,14 @@ router.post("/register", async (req, res) => {
 
         const token = jwt.sign({ _id: nuevoUsuario._id, usuario: nuevoUsuario.usuario }, process.env.JWT_SECRET, { expiresIn: "1h" }); 
 
-        // Guardar el token en una cookie
+       
         res.cookie("jwtToken", token, {
             maxAge: 3600000, 
             httpOnly: true
         });
 
-        // Redirigir a la página de inicio con el mensaje de bienvenida
-        res.redirect("/home");  // Cambia la redirección a /home
+        
+        res.redirect("/home");  
 
     } catch (error) {
         res.status(500).send("Error interno del servidor"); 

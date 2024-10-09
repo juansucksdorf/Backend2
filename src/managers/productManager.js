@@ -8,7 +8,7 @@ class ProductManager {
 
   async getProducts() {
     try {
-      return await productDao.getAll(); // Usa productDao para obtener todos los productos
+      return await productDao.getAll(); 
     } catch (error) {
       console.error("Error al obtener todos los productos:", error.message);
       throw error;
@@ -18,7 +18,7 @@ class ProductManager {
     try {
       const { title, description, price, thumbnail, code, stock } = producto;
       if (title && description && price && thumbnail && code && stock) {
-        const productoExistente = await productDao.getById(code); // Usa productDao para verificar existencia
+        const productoExistente = await productDao.getById(code); 
   
         if (productoExistente) {
           console.error('¡El código ya existe!');
@@ -33,7 +33,7 @@ class ProductManager {
             stock
           };
   
-          const result = await productDao.create(nuevoProducto); // Usa productDao para crear el producto
+          const result = await productDao.create(nuevoProducto); 
           console.log('Producto agregado correctamente:', result);
           return result;
           console.log(productDao);
@@ -51,7 +51,7 @@ class ProductManager {
 
   async getProductById(id) {
     try {
-      const producto = await productDao.getById(id); // Usa productDao para obtener por ID
+      const producto = await productDao.getById(id); 
       if (producto) {
         return producto;
       } else {
@@ -65,7 +65,7 @@ class ProductManager {
 
   async updateProduct(id, camposActualizados) {
     try {
-      const productoActualizado = await productDao.update(id, camposActualizados); // Usa productDao para actualizar
+      const productoActualizado = await productDao.update(id, camposActualizados); 
       if (productoActualizado) {
         console.log("Producto actualizado correctamente.");
         return productoActualizado;
@@ -80,7 +80,7 @@ class ProductManager {
 
   async deleteProduct(id) {
     try {
-      const resultado = await productDao.remove(id); // Usa productDao para eliminar
+      const resultado = await productDao.remove(id); 
       if (resultado) {
         console.log("Producto eliminado correctamente.");
         return resultado;

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const cartController = require('../controllers/cartControllers');
 
-// Crear un nuevo carrito
+
 router.post('/create', async (req, res) => {
     try {
         const newCart = await cartController.createCart();
-        // Configura la cookie 'cartId'
+        
         res.cookie('cartId', newCart._id.toString(), { path: '/', httpOnly: true });
         res.status(201).json({ success: true, cart: newCart });
     } catch (error) {
@@ -15,7 +15,7 @@ router.post('/create', async (req, res) => {
     }
 });
 
-// Obtener un carrito por ID
+
 router.get('/:cid', async (req, res) => {
     try {
         const cart = await cartController.getById(req.params.cid);
@@ -26,7 +26,7 @@ router.get('/:cid', async (req, res) => {
     }
 });
 
-// Obtener carritos paginados
+
 router.get('/all', async (req, res) => {
     try {
         const { page, limit } = req.query;
@@ -38,7 +38,7 @@ router.get('/all', async (req, res) => {
     }
 });
 
-// Agregar producto al carrito
+
 router.post('/:cid/products/:pid', async (req, res) => {
     try {
         const { cid, pid } = req.params;
@@ -52,7 +52,7 @@ router.post('/:cid/products/:pid', async (req, res) => {
     }
 });
 
-// Actualizar carrito con arreglo de productos
+
 router.put('/:cid', async (req, res) => {
     try {
         const updatedCart = await cartController.updateCart(req.params.cid, req.body);
@@ -63,7 +63,7 @@ router.put('/:cid', async (req, res) => {
     }
 });
 
-// Eliminar un producto del carrito
+
 router.delete('/:cid/products/:pid', async (req, res) => {
     try {
         const { cid, pid } = req.params;
@@ -75,7 +75,7 @@ router.delete('/:cid/products/:pid', async (req, res) => {
     }
 });
 
-// Actualizar cantidad de un producto en el carrito
+
 router.put('/:cid/products/:pid', async (req, res) => {
     try {
         const { cid, pid } = req.params;
@@ -88,7 +88,7 @@ router.put('/:cid/products/:pid', async (req, res) => {
     }
 });
 
-// Eliminar todos los productos del carrito
+
 router.delete('/:cid', async (req, res) => {
     try {
         const updatedCart = await cartController.clearCart(req.params.cid);

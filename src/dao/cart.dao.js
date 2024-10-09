@@ -59,15 +59,15 @@ const addProductToCart = async (cartId, productId, quantity = 1) => {
 
         const productIndex = cart.products.findIndex(p => p.product.equals(productId));
         if (productIndex > -1) {
-            // Si el producto ya está en el carrito, actualiza la cantidad
+           
             cart.products[productIndex].quantity += quantity;
         } else {
-            // Si el producto no está en el carrito, añádelo
+         
             cart.products.push({ product: productId, quantity });
         }
 
         await cart.save();
-        return await cart.populate('products.product').execPopulate(); // Asegúrate de usar `execPopulate` si usas Mongoose 5.x
+        return await cart.populate('products.product').execPopulate();
     } catch (error) {
         console.error('Error al agregar producto al carrito:', error.message);
         throw error;
@@ -140,7 +140,7 @@ module.exports = {
     create,
     getById,
     getPaginatedCarts,
-    addProductToCart, // Agrega esta línea
+    addProductToCart, 
     updateCart,
     removeProduct,
     updateProductQuantity,

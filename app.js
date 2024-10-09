@@ -72,12 +72,12 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Iniciar el servidor
+
 const server = app.listen(PUERTO, () => {
   console.log(`Servidor corriendo en puerto ${PUERTO}`);
 });
 
-// Crear servidor WebSocket
+
 const wsServer = new Server(server);
 app.set('ws', wsServer);
 
@@ -89,7 +89,7 @@ wsServer.on('connection', (socket) => {
   });
 });
 
-// Middleware de manejo de errores
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ success: false, error: 'Error en el servidor', message: err.message });

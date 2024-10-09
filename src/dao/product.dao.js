@@ -1,6 +1,6 @@
 import productModel from '../dao/models/product.model.js';
 
-// Obtener todos los productos con paginación, filtros y orden
+
 export const getAll = async (page = 1, limit = 10, query = {}, sort = 'asc') => {
     try {
         const options = {
@@ -26,7 +26,7 @@ export const getAll = async (page = 1, limit = 10, query = {}, sort = 'asc') => 
     }
 };
 
-// Crear un nuevo producto
+
 export const create = async (data) => {
     try {
         const product = await productModel.create(data);
@@ -37,7 +37,7 @@ export const create = async (data) => {
     }
 };
 
-// Obtener un producto por ID
+
 export const getById = async (id) => {
     try {
         const product = await productModel.findById(id);
@@ -48,7 +48,7 @@ export const getById = async (id) => {
     }
 };
 
-// Actualizar un producto existente
+
 export const update = async (id, updateData) => {
     try {
         const product = await productModel.findByIdAndUpdate(id, updateData, { new: true });
@@ -59,7 +59,7 @@ export const update = async (id, updateData) => {
     }
 };
 
-// Eliminar un producto
+
 export const remove = async (id) => {
     try {
         await productModel.findByIdAndDelete(id);
