@@ -1,4 +1,4 @@
-const cartModel = require('./models/cart.model');
+import cartModel from '../models/cart.model.js'
 
 const create = async () => {
     try {

@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
 
         const token = jwt.sign({ _id: usuarioEncontrado._id, usuario: usuarioEncontrado.usuario, rol: usuarioEncontrado.rol }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        // Guardar el token en una cookie
+        
         res.cookie("jwtToken", token, {
             maxAge: 3600000, 
             httpOnly: true

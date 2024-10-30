@@ -1,4 +1,4 @@
-import productModel from '../dao/models/product.model.js';
+import productModel from '../models/product.model.js';
 
 
 export const getAll = async (page = 1, limit = 10, query = {}, sort = 'asc') => {
